@@ -1,0 +1,3 @@
+Defaults umask_override
+Defaults umask=002
+myaccount ALL=(ALL) NOPASSWD: ALL
