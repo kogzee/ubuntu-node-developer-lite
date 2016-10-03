@@ -57,6 +57,34 @@ class myaccount {
                   }
   )
 
+   ensure_resource('package',
+                    ['mongodb-org=3.2.10',# cloud server
+                    'mongodb-org-server=3.2.10',# cloud server
+                    'mongodb-org-shell=3.2.10',# cloud server
+                    'mongodb-org-mongos=3.2.10',# cloud server
+                    'mongodb-org-tools=3.2.10',# cloud server
+                    ],
+                    { 'ensure' => 'present', 'require' => 'Exec[apt-get update]'
+                    })
+
+  file {
+    '/etc/apt/sources.list.d/mongodb.list':
+      source  => 'puppet:///modules/myaccount/mongodb.list',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => Apt::Key['mongodb'],
+      notify  => Exec['apt-get update'];
+  }
+
+
+
+  apt::key {
+    'mongodb':
+      key        => '7F0CEB10',
+      key_server => 'hkp://keyserver.ubuntu.com:80';
+  }
+
   user {
     'myaccount':
       ensure     => present,

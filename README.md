@@ -21,3 +21,6 @@ sudo puppet module install -i ~/provisioning/myaccount-node-developer/environmen
 
 sudo puppet module install -i ~/provisioning/myaccount-node-developer/environments/development/modules puppetlabs/nodejs
 
+sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/apt
+
+
