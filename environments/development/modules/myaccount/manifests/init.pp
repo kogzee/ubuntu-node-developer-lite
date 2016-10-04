@@ -64,7 +64,7 @@ class myaccount {
                     'mongodb-org-mongos=3.2.10',# cloud server
                     'mongodb-org-tools=3.2.10',# cloud server
                     ],
-                    { 'ensure' => 'present', 'require' => 'Exec[apt-get update]'
+                    { 'ensure' => 'present', 'require' => 'Exec[apt-get update]', 'install_options' => '--force-yes'
                     })
 
   file {
@@ -81,9 +81,11 @@ class myaccount {
 
   apt::key {
     'mongodb':
-      key        => '7F0CEB10',
+      key        => 'EA312927',
       key_server => 'hkp://keyserver.ubuntu.com:80';
   }
+
+  #sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
   user {
     'myaccount':
