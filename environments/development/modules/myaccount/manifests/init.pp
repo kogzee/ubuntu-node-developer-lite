@@ -120,6 +120,14 @@ class myaccount {
       require => User['myaccount'];
   }
 
+  file { ['/data', '/data/db']:
+    ensure => 'directory',
+    owner   => 'myaccount',
+    group   => 'myaccount',
+    mode    => '0777',
+    require => User['myaccount'];
+  }
+
  file {
     "/var/lib/locales/supported.d/local":
     content => "en_US UTF-8\n",
