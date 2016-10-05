@@ -41,4 +41,6 @@ If you want to destroy the vm:
 vagrant destroy
 ```
 
+NOTE: If using windows when you do an npm install you need to use the flag --no-bin-links
+
 
