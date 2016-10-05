@@ -1,4 +1,4 @@
-# myaccount-node-developer
+# myaccount-node-developer-lite
 
 Install Virtual Box
 https://www.virtualbox.org/wiki/Downloads

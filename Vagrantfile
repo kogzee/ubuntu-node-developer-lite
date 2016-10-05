@@ -5,9 +5,13 @@ Vagrant.configure("2") do |config|
         box.vm.box = "puppetlabs/ubuntu-16.04-64-puppet"
         box.vm.box_url = "https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-16.04-64-puppet"
         box.vm.hostname = "myaccount"
-
-        # Fixes "stdin: is not a tty" and "mesg: ttyname failed : Inappropriate ioctl for device" messages --> mitchellh/vagrant#1673
-        #box.vm.provision :shell , inline: "(grep -q 'mesg n' /root/.profile && sed -i '/mesg n/d' /root/.profile && echo 'Ignore the previous error, fixing this now...') || exit 0;"
+         box.vm.network "forwarded_port", guest: 3000, host: 3000
+        # api https backend port
+        box.vm.network "forwarded_port", guest: 3001, host: 3001
+        # web server port
+        box.vm.network "forwarded_port", guest: 2000, host: 2000
+        # debugger port
+        box.vm.network "forwarded_port", guest: 5858, host: 5858
     end
     
     #
@@ -39,7 +43,7 @@ Vagrant.configure("2") do |config|
     # Tweak the vbox settings
     config.vm.provider :virtualbox do |vb|
         # Give the server x Mb of ram
-        vb.customize ["modifyvm", :id, "--memory", 4096]
+        vb.customize ["modifyvm", :id, "--memory", 2048]
         vb.customize ["modifyvm", :id, "--vram", "32"]
         # Enable DNS resolution
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]

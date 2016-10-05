@@ -4,6 +4,4 @@ node default {
   }
   include stdlib
   include myaccount
-  #include chrome
-  include vscode
 }

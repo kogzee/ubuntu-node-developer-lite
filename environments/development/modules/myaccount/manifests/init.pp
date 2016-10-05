@@ -14,14 +14,8 @@ class myaccount {
                     { 'ensure' => 'present'
                     })
 
-  package { 'ubuntu-desktop':
-    ensure          => installed
-    #install_options => ['--no-install-recommends'],
-  }
 
-  package { 'virtualbox-guest-additions-iso':
-    ensure          => installed
-  }
+
 
   exec {
     'nodesource':
@@ -46,9 +40,6 @@ class myaccount {
 
   ensure_resource('package',
                   ['bower',     # Web client
-                  'http-server',# Web client
-                  'grunt',      # cloud server
-                  'forever',    # cloud server - run as a service
                   'n',          # node version manager
                   ],
                   { 'provider' => 'npm',
@@ -78,14 +69,11 @@ class myaccount {
   }
 
 
-
   apt::key {
     'mongodb':
       key        => 'EA312927',
       key_server => 'hkp://keyserver.ubuntu.com:80';
   }
-
-  #sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
   user {
     'myaccount':
@@ -93,7 +81,7 @@ class myaccount {
       shell      => '/bin/bash',
       home       => '/home/myaccount',
       managehome => 'yes',
-      # password is myaccount
+      # password is myaccount, generated with openssl passwd -1 myaccount
       password   => '$1$NUEqnKvH$j.oNAabDwkUSprkKtb1At/';
   }
 
@@ -126,19 +114,5 @@ class myaccount {
     group   => 'myaccount',
     mode    => '0777',
     require => User['myaccount'];
-  }
-
- file {
-    "/var/lib/locales/supported.d/local":
-    content => "en_US UTF-8\n",
-    notify  => Exec["generate-locales"];
-    "/etc/default/locale":
-      source => "puppet:///modules/myaccount/locale";
-  }
-  
-  exec {
-    "generate-locales":
-     command => "/usr/sbin/dpkg-reconfigure --frontend=noninteractive locales",
-     refreshonly => true;
   }
 }
