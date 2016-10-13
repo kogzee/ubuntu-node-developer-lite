@@ -14,16 +14,20 @@ https://downloads.puppetlabs.com/mac/10.11/PC1/x86_64/
 Windows:
 https://docs.puppet.com/puppet/4.7/reference/install_windows.html#download-the-windows-puppet-agent-package
 
-
 Ensure these puppet modules are installed (correct the path as per your machine)
 
-sudo puppet module install -i ~/provisioning/myaccount-node-developer/environments/development/modules puppetlabs/stdlib
+sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/stdlib
 
-sudo puppet module install -i ~/provisioning/myaccount-node-developer/environments/development/modules puppetlabs/nodejs
+sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/nodejs
 
 sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/apt
 
+sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/ruby
+
+These can be installed to any location, but they may need to be copied to the modules folder in this repo's directory
+
 Then open up a terminal and navigate to the folder with this repo and type:
+
 
 ```
 vagrant up

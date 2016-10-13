@@ -39,6 +39,7 @@ jspm_packages
 environments/development/modules/nodejs
 environments/development/modules/stdlib
 environments/development/modules/apt
+environments/development/modules/ruby
 
 .vagrant
 

@@ -32,15 +32,10 @@ class myaccount {
                     { 'ensure' => 'present', 'require' => 'Exec[nodesource]'
                     })
 
-  exec { 'set node version':
-    command => 'n 4.6.0',
-    path    => ['/bin', '/usr/bin'],
-    require => Package['n']
-  }
 
   ensure_resource('package',
-                  ['bower',     # Web client
-                  'n',          # node version manager
+                  ['lite-server',# Web client
+                  'grunt'      # Web client
                   ],
                   { 'provider' => 'npm',
                   'ensure' => 'present',
@@ -114,5 +109,22 @@ class myaccount {
     group   => 'myaccount',
     mode    => '0777',
     require => User['myaccount'];
+  }
+
+  class { '::ruby':
+      gems_version => 'latest',
+      before => Package['sass'];
+  }
+
+  package { 'sass':
+    ensure   => 'installed',
+    provider => 'gem';
+  }
+
+  exec { 'npm update':
+    command => 'npm update -g',
+    user => 'root',
+    path    => ['/usr/local/node/node-default/bin', '/bin', '/usr/bin'],
+    require => Package['nodejs'];
   }
 }
