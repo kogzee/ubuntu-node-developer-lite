@@ -1,14 +1,18 @@
 # myaccount-node-developer-lite
 
-Vagrant/Puppet scripts to automate provisioning of a minimal developer virtual machine (using Virtual Box).  This machine will contain:
+Vagrant/Puppet scripts to automate provisioning of a minimal developer virtual machine (using Virtual Box). 
 
-his will provision a VM with
-Ubuntu 16.04
-Node JS/NPM
-Mongo DB
-Ruby (Required by Sass)
-Sass
-Grunt
+This machine contain:
+
+
+* Ubuntu 16.04
+* Node JS/NPM
+* Mongo DB
+* Ruby (Required by Sass)
+* Sass
+* Grunt
+
+Steps:
 
 Install Virtual Box
 https://www.virtualbox.org/wiki/Downloads
