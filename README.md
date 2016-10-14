@@ -1,5 +1,15 @@
 # myaccount-node-developer-lite
 
+Vagrant/Puppet scripts to automate provisioning of a minimal developer virtual machine (using Virtual Box).  This machine will contain:
+
+his will provision a VM with
+Ubuntu 16.04
+Node JS/NPM
+Mongo DB
+Ruby (Required by Sass)
+Sass
+Grunt
+
 Install Virtual Box
 https://www.virtualbox.org/wiki/Downloads
 
@@ -14,7 +24,8 @@ https://downloads.puppetlabs.com/mac/10.11/PC1/x86_64/
 Windows:
 https://docs.puppet.com/puppet/4.7/reference/install_windows.html#download-the-windows-puppet-agent-package
 
-Ensure these puppet modules are installed (correct the path as per your machine)
+
+Ensure these puppet modules are installed (correct the path as per your machine, so they are in the modues directory in this repo folder.  They can be installed elsewhere and copied to the folder)
 
 sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/stdlib
 
